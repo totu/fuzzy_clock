@@ -26,6 +26,10 @@ namespace fuzzy_kellotin
         hour = hour + 1;
         fuzzyness = " vaille ";
       }
+      else if (minutes == 30)
+      {
+        hour = hour + 1;
+      }
       else if (minutes < 30 && minutes > 3)
       {
         fuzzyness = " yli ";
@@ -37,7 +41,8 @@ namespace fuzzy_kellotin
     {
       string fuzzy = "error";
       if (hour > 12) hour = hour - 12;
-      fuzzy = fuzziesH[hour - 1];
+      if (hour == 0) fuzzy = fuzziesH[11];
+      else fuzzy = fuzziesH[hour - 1];
       return fuzzy;
     }
 

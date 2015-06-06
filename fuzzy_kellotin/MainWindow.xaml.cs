@@ -7,7 +7,7 @@ namespace fuzzy_kellotin
   public partial class MainWindow : Window
   {
     private bool black = true;
-    private string APIKEY = "";
+    private string APIKEY = "8e529d665a536bec7a86e55e82b64369";
     private string LOCALE = "Riihimäki,fi";
     
     public MainWindow()
