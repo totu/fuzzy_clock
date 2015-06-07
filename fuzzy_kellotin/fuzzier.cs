@@ -21,7 +21,7 @@ namespace fuzzy_kellotin
       var m = Convert.ToInt32(Math.Round(minutes / 5.0) * 5);
       fuzzyness = " ";
 
-      if (m > 30 && minutes < 57)
+      if (m > 30 && minutes < 58)
       {
         hour = hour + 1;
         fuzzyness = " vaille ";
@@ -34,6 +34,11 @@ namespace fuzzy_kellotin
       {
         fuzzyness = " yli ";
       }
+      else if (minutes > 57)
+      {
+        hour = hour + 1;
+      }
+
       return Minutes(m) + fuzzyness + Hour(hour);
     }
 
