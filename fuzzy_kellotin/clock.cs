@@ -38,7 +38,7 @@ namespace fuzzy_kellotin
       DateTime time = DateTime.Now;
       minutes = time.Minute;
       hours = time.Hour;
-      clock.Content = fuzz.FuzzyUp(hours, 57);
+      clock.Content = fuzz.FuzzyUp(hours, minutes);
     }
   }
 }

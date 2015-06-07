@@ -30,7 +30,7 @@ namespace fuzzy_kellotin
       {
         hour = hour + 1;
       }
-      else if (m < 30 && minutes > 3)
+      else if (m < 30 && minutes > 2)
       {
         fuzzyness = " yli ";
       }
