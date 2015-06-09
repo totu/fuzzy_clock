@@ -6,15 +6,16 @@ namespace fuzzy_kellotin
 {
   public partial class MainWindow : Window
   {
-    private bool black = true;
+    public static bool black { get; set; }
     private string APIKEY = "8e529d665a536bec7a86e55e82b64369";
     private string LOCALE = "Riihimäki,fi";
     
     public MainWindow()
     {
       InitializeComponent();
+      black = true;
       Clock clock = new Clock(kello);
-      Weather weather = new Weather(lampotila, LOCALE, APIKEY);
+      Weather weather = new Weather(lampotila, image, LOCALE, APIKEY);
       clock.start();
       weather.start();
     }
