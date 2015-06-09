@@ -6,21 +6,19 @@ using System.Windows.Threading;
 
 namespace fuzzy_kellotin
 {
-  class Weather
+  class Weather : Fader
   {
     private string APIKEY;
     private string LOCALE;
-    private Label weather;
     private DispatcherTimer timer;
 
-    public Weather(Label w, string locale, string apikey)
+    public Weather(Label obj, string locale, string apikey) : base(obj)
     {
-      weather = w;
       APIKEY = apikey;
       LOCALE = locale;
       timer = new DispatcherTimer();
       timer.Tick += timerTick;
-      timer.Interval = new TimeSpan(0, 30, 0);
+      timer.Interval = new TimeSpan(0, 1, 0);
     }
     
     private void timerTick(object sender, EventArgs e)
@@ -36,7 +34,9 @@ namespace fuzzy_kellotin
 
     private void getWeather()
     {
-      weather.Content = getWeatherFromAPI();
+      //weather.Content = getWeatherFromAPI();
+      string weather = getWeatherFromAPI();
+      animate(weather);
     }
 
     private string getWeatherFromAPI()

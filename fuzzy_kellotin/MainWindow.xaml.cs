@@ -19,6 +19,21 @@ namespace fuzzy_kellotin
       weather.start();
     }
 
+    private void toggleColors()
+    {
+      if (black == true)
+      {
+        kello.Foreground = new SolidColorBrush(Colors.White);
+        black = false;
+      }
+      else
+      {
+        kello.Foreground = new SolidColorBrush(Colors.Black);
+        black = true;
+      }
+      lampotila.Foreground = kello.Foreground;
+    }
+
     private void kello_MouseDown(object sender, MouseButtonEventArgs e)
     {
       if (e.ChangedButton == MouseButton.Left && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.LeftAlt)))
@@ -28,17 +43,13 @@ namespace fuzzy_kellotin
     private void kello_MouseDoubleClick(object sender, MouseButtonEventArgs e)
     {
       if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.LeftAlt))
-        if (black == true)
-        {
-          kello.Foreground = new SolidColorBrush(Colors.White);
-          black = false;
-        }
-        else
-        {
-          kello.Foreground = new SolidColorBrush(Colors.Black);
-          black = true;
-        }
-      lampotila.Foreground = kello.Foreground;
+        toggleColors();
+    }
+
+    private void Window_KeyDown(object sender, KeyEventArgs e)
+    {
+      if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.Space))
+        toggleColors();
     }
   }
 }

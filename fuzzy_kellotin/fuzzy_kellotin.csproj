@@ -58,6 +58,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Clock.cs" />
+    <Compile Include="Fader.cs" />
     <Compile Include="Fuzzier.cs" />
     <Compile Include="Weather.cs" />
     <Page Include="MainWindow.xaml">

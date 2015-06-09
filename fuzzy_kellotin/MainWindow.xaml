@@ -1,9 +1,9 @@
 ﻿<Window x:Class="fuzzy_kellotin.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="73" Width="448" AllowsTransparency="True" WindowStyle="None" Background="Transparent" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" ShowActivated="False">
+        Title="MainWindow" Height="73" Width="448" AllowsTransparency="True" WindowStyle="None" Background="Transparent" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" ShowActivated="True" WindowState="Maximized" KeyDown="Window_KeyDown">
     <Grid Height="58" VerticalAlignment="Top">
         <Label x:Name="kello" Content=" " VerticalAlignment="Top" FontFamily="Open Sans" FontWeight="Light" FontSize="14" Foreground="#FF000000" MouseDown="kello_MouseDown" MouseDoubleClick="kello_MouseDoubleClick" Margin="0,5,10,0" HorizontalAlignment="Right" Width="310" Height="30" HorizontalContentAlignment="Right"/>
-        <Label x:Name="lampotila" Content="0 °C" VerticalAlignment="Top" FontFamily="Open Sans" FontWeight="Light" FontSize="14" Foreground="#FF000000" MouseDown="kello_MouseDown" MouseDoubleClick="kello_MouseDoubleClick" Margin="10,5,0,0" HorizontalAlignment="Left" Width="100" Height="30" HorizontalContentAlignment="Left"/>
+        <Label x:Name="lampotila" Content=" " VerticalAlignment="Top" FontFamily="Open Sans" FontWeight="Light" FontSize="14" Foreground="#FF000000" MouseDown="kello_MouseDown" MouseDoubleClick="kello_MouseDoubleClick" Margin="10,5,0,0" HorizontalAlignment="Left" Width="100" Height="30" HorizontalContentAlignment="Left"/>
     </Grid>
 </Window>
