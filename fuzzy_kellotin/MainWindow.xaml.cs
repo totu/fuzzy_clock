@@ -13,11 +13,20 @@ namespace fuzzy_kellotin
     public MainWindow()
     {
       InitializeComponent();
+      HotKey _hotKey = new HotKey(Key.Space, KeyModifier.Alt, OnHotKeyHandler);
       black = true;
       Clock clock = new Clock(kello);
       Weather weather = new Weather(lampotila, image, LOCALE, APIKEY);
       clock.start();
       weather.start();
+    }
+
+    private void OnHotKeyHandler(HotKey hotKey)
+    {
+      launcher launcher = new launcher();
+      launcher.Show();
+      launcher.Activate();
+      launcher.searchBox.Focus();
     }
 
     private void toggleColors()

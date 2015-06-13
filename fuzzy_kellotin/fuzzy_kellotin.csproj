@@ -60,7 +60,15 @@
     <Compile Include="Clock.cs" />
     <Compile Include="Fader.cs" />
     <Compile Include="Fuzzier.cs" />
+    <Compile Include="HotKey.cs" />
+    <Compile Include="launcher.xaml.cs">
+      <DependentUpon>launcher.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Weather.cs" />
+    <Page Include="launcher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
