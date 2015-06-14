@@ -69,10 +69,6 @@ namespace fuzzy_kellotin
       }
     }
 
-    private void hide_hack(object sender, TextChangedEventArgs e)
-    {
-
-    }
 
     private void searchBox_KeyDown(object sender, KeyEventArgs e)
     {
@@ -86,6 +82,14 @@ namespace fuzzy_kellotin
         image.Source = null;
         this.Hide();
         proc.Start();
+      }
+      if (Keyboard.IsKeyDown(Key.Escape))
+      {
+        test.Text = "";
+        searchBox.Text = String.Empty;
+        found = null;
+        image.Source = null;
+        this.Hide();
       }
     }
 

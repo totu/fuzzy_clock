@@ -16,7 +16,6 @@ namespace fuzzy_kellotin
       InitializeComponent();
       launcher = new launcher();
       HotKey _hotKey = new HotKey(Key.Space, KeyModifier.Alt, OnHotKeyHandler);
-      HotKey _hotKey2 = new HotKey(Key.Escape, KeyModifier.None, OnHotKeyHandler2);
       black = true;
       Clock clock = new Clock(kello);
       Weather weather = new Weather(lampotila, image, LOCALE, APIKEY);
@@ -29,15 +28,6 @@ namespace fuzzy_kellotin
       launcher.Show();
       launcher.Activate();
       launcher.searchBox.Focus();
-    }
-
-    private void OnHotKeyHandler2(HotKey hotKey)
-    {
-      launcher.Hide();
-      launcher.test.Text = "";
-      launcher.searchBox.Text = "";
-      launcher.found = null;
-      launcher.image.Source = null;
     }
 
     private void toggleColors()
