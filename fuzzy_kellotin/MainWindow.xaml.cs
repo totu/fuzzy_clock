@@ -9,11 +9,14 @@ namespace fuzzy_kellotin
     public static bool black { get; set; }
     private string APIKEY = "8e529d665a536bec7a86e55e82b64369";
     private string LOCALE = "Riihimäki,fi";
-    
+    private launcher launcher;
+
     public MainWindow()
     {
       InitializeComponent();
+      launcher = new launcher();
       HotKey _hotKey = new HotKey(Key.Space, KeyModifier.Alt, OnHotKeyHandler);
+      HotKey _hotKey2 = new HotKey(Key.Escape, KeyModifier.None, OnHotKeyHandler2);
       black = true;
       Clock clock = new Clock(kello);
       Weather weather = new Weather(lampotila, image, LOCALE, APIKEY);
@@ -23,10 +26,18 @@ namespace fuzzy_kellotin
 
     private void OnHotKeyHandler(HotKey hotKey)
     {
-      launcher launcher = new launcher();
       launcher.Show();
       launcher.Activate();
       launcher.searchBox.Focus();
+    }
+
+    private void OnHotKeyHandler2(HotKey hotKey)
+    {
+      launcher.Hide();
+      launcher.test.Text = "";
+      launcher.searchBox.Text = "";
+      launcher.found = null;
+      launcher.image.Source = null;
     }
 
     private void toggleColors()

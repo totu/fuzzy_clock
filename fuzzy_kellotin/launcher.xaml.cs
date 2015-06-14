@@ -15,7 +15,7 @@ namespace fuzzy_kellotin
   public partial class launcher : Window
   {
     private List<FileInfo> executables = new List<FileInfo>();
-    private FileInfo found = null;
+    public FileInfo found = null;
     public launcher()
     {
       InitializeComponent();
@@ -53,11 +53,12 @@ namespace fuzzy_kellotin
     private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
     {
       FileInfo f = executables.Find(x => Contains(x.Name, searchBox.Text));
-      if (f != null)
+      if (f != null && searchBox.Text.Length > 0)
       {
         test.Text = f.Name.Replace(".lnk", "");
-
-        image.Source = GetIcon(f.FullName);
+        IWshRuntimeLibrary.IWshShell wsh = new IWshRuntimeLibrary.WshShellClass();
+        IWshRuntimeLibrary.IWshShortcut sc = (IWshRuntimeLibrary.IWshShortcut)wsh.CreateShortcut(f.FullName);
+        image.Source = GetIcon(sc.TargetPath);
         found = f;
       }
       else
@@ -68,19 +69,24 @@ namespace fuzzy_kellotin
       }
     }
 
+    private void hide_hack(object sender, TextChangedEventArgs e)
+    {
+
+    }
+
     private void searchBox_KeyDown(object sender, KeyEventArgs e)
     {
       if (Keyboard.IsKeyDown(Key.Enter) && found != null)
       {
         Process proc = new Process();
         proc.StartInfo.FileName = found.FullName;
-        proc.Start();
         test.Text = "";
+        searchBox.Text = String.Empty;
         found = null;
-        this.Close();
+        image.Source = null;
+        this.Hide();
+        proc.Start();
       }
-      if (Keyboard.IsKeyDown(Key.Escape))
-        this.Close();
     }
 
     private void test_GotFocus(object sender, RoutedEventArgs e)
