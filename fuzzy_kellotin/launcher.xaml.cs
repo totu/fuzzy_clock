@@ -5,6 +5,8 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Effects;
 
 namespace fuzzy_kellotin
 {
@@ -15,11 +17,13 @@ namespace fuzzy_kellotin
     public launcher()
     {
       InitializeComponent();
+      checkColors();
       string path = Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu) + @"\Programs\";
       searchFolder(path);
       path = Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + @"\Programs\";
       searchFolder(path);
       searchBox.Focus();
+
     }
 
     private void searchFolder(string path)
@@ -72,6 +76,32 @@ namespace fuzzy_kellotin
     private void test_GotFocus(object sender, RoutedEventArgs e)
     {
       searchBox.Focus();
+    }
+
+    private void checkColors()
+    {
+
+      DropShadowEffect dropShadow = new DropShadowEffect
+      {
+        Color = Colors.Black,
+        Direction = 320,
+        ShadowDepth = 0,
+        Opacity = 1
+      };
+
+      if (MainWindow.black == true)
+      {
+        test.Foreground = new SolidColorBrush(Colors.Black);
+        dropShadow.Color = Colors.White;
+      }
+      else
+      {
+        test.Foreground = new SolidColorBrush(Colors.White);
+      }
+      test.Effect = dropShadow;
+      searchBox.Effect = test.Effect;
+      searchBox.Foreground = test.Foreground;
+      searchBox.BorderBrush = searchBox.CaretBrush = searchBox.Foreground;
     }
   }
 }
