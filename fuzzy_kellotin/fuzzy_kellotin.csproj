@@ -40,6 +40,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -64,6 +66,7 @@
     <Compile Include="launcher.xaml.cs">
       <DependentUpon>launcher.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MyModule1.cs" />
     <Compile Include="Weather.cs" />
     <Page Include="launcher.xaml">
       <SubType>Designer</SubType>

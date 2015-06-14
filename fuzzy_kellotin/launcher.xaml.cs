@@ -7,6 +7,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
+using System.Drawing;
+using System.Windows.Media.Imaging;
 
 namespace fuzzy_kellotin
 {
@@ -23,7 +25,6 @@ namespace fuzzy_kellotin
       path = Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + @"\Programs\";
       searchFolder(path);
       searchBox.Focus();
-
     }
 
     private void searchFolder(string path)
@@ -43,18 +44,27 @@ namespace fuzzy_kellotin
       return source.IndexOf(toCheck, StringComparison.OrdinalIgnoreCase) >= 0;
     }
 
+    public static ImageSource GetIcon(string fileName)
+    {
+      Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(fileName);
+      return System.Windows.Interop.Imaging.CreateBitmapSourceFromHIcon(icon.Handle, new Int32Rect(0, 0, icon.Width, icon.Height), BitmapSizeOptions.FromEmptyOptions());
+    }
+
     private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
     {
       FileInfo f = executables.Find(x => Contains(x.Name, searchBox.Text));
       if (f != null)
       {
         test.Text = f.Name.Replace(".lnk", "");
+
+        image.Source = GetIcon(f.FullName);
         found = f;
       }
       else
       {
         test.Text = "";
         found = null;
+        image.Source = null;
       }
     }
 

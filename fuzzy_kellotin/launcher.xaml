@@ -5,17 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:fuzzy_kellotin"
         mc:Ignorable="d"
-        Title="launcher" Height="55" Width="252" AllowsTransparency="True" WindowStyle="None" Background="#00F1F1F1" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Topmost="True" ShowInTaskbar="False">
-    <Grid>
-        <TextBox x:Name="test" Text="" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Open Sans"  FontSize="20" Height="30" Width="auto" Margin="0,0,3,27" BorderThickness="0" Background="#00F1F1F1" IsReadOnly="True" GotFocus="test_GotFocus" Cursor="Arrow">
+        Title="launcher" Height="86" Width="252" AllowsTransparency="True" WindowStyle="None" Background="#00F1F1F1" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Topmost="True" ShowInTaskbar="False">
+    <Grid Margin="0,0,0,-62" RenderTransformOrigin="0.504,0.75">
+        <TextBox x:Name="test" Text="" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Open Sans"  FontSize="20" Height="30" Width="auto" Margin="3,33,0,85" BorderThickness="0" Background="#00F1F1F1" IsReadOnly="True" GotFocus="test_GotFocus" Cursor="Arrow">
             <TextBox.Effect>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="3"/>
             </TextBox.Effect>
         </TextBox>
-        <TextBox x:Name="searchBox" TextAlignment="Center" TextChanged="searchBox_TextChanged" KeyDown="searchBox_KeyDown" HorizontalAlignment="Left" Height="24" Margin="47,29,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" BorderThickness="0,0,0,1" FontFamily="Open Sans" FontSize="13.333" Background="Transparent" BorderBrush="Black">
+        <TextBox x:Name="searchBox" TextAlignment="Center" TextChanged="searchBox_TextChanged" KeyDown="searchBox_KeyDown" HorizontalAlignment="Left" Height="24" Margin="80,60,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="80" BorderThickness="0,0,0,1" FontFamily="Open Sans" FontSize="13.333" Background="Transparent" BorderBrush="Black">
             <TextBox.Effect>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="3"/>
             </TextBox.Effect>
-        </TextBox>
+        </TextBox> 
+        <Image x:Name="image" HorizontalAlignment="Left" Height="30" Margin="106,0,0,0" VerticalAlignment="Top" Width="30">
+            <Image.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="3"/> 
+            </Image.Effect>
+        </Image>
     </Grid>
 </Window>
