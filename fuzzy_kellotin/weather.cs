@@ -56,26 +56,33 @@ namespace fuzzy_kellotin
     {
       string weather = getWeatherFromAPI();
       image.Source = setWeatherIcon(weatherDescription);
-      animate(weather);
+      if (weather != "API error")
+        animate(weather);
     }
 
     private string getWeatherFromAPI()
     {
-      string tempeture = "API error";
-      using (var webClient = new System.Net.WebClient())
+      string tempeture;
+      try
       {
-        string pattern = @"rain|snow";
-        Regex r = new Regex(pattern);
-        MatchCollection m;
-        var js = new WebClient().DownloadString("http://api.openweathermap.org/data/2.5/weather?q=" + LOCALE + "&APIID=" + APIKEY);
-        dynamic json = JsonConvert.DeserializeObject(js);
-        tempeture = Convert.ToString(Math.Round((Convert.ToDouble(json.main.temp) - 273.15))) + " °C";
+        using (var webClient = new System.Net.WebClient())
+        {
+          string pattern = @"rain|snow";
+          Regex r = new Regex(pattern);
+          MatchCollection m;
+          var js = new WebClient().DownloadString("http://api.openweathermap.org/data/2.5/weather?q=" + LOCALE + "&APIID=" + APIKEY);
+          dynamic json = JsonConvert.DeserializeObject(js);
+          tempeture = Convert.ToString(Math.Round((Convert.ToDouble(json.main.temp) - 273.15))) + " °C";
 
-        JArray a = json.weather;
-        string description = a[0]["main"].ToString();
-        m = r.Matches(description);
-        if (m.Count > 0)
-          weatherDescription = m[0].Value;
+          JArray a = json.weather;
+          string description = a[0]["main"].ToString();
+          m = r.Matches(description);
+          if (m.Count > 0)
+            weatherDescription = m[0].Value;
+        }
+      } catch
+      {
+        tempeture = "API error";
       }
       return tempeture;
     }

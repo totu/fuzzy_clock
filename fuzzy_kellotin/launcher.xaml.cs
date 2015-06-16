@@ -55,7 +55,7 @@ namespace fuzzy_kellotin
       FileInfo f = executables.Find(x => Contains(x.Name, searchBox.Text));
       if (f != null && searchBox.Text.Length > 0)
       {
-        test.Text = f.Name.Replace(".lnk", "");
+        appName.Text = f.Name.Replace(".lnk", "");
         IWshRuntimeLibrary.IWshShell wsh = new IWshRuntimeLibrary.WshShellClass();
         IWshRuntimeLibrary.IWshShortcut sc = (IWshRuntimeLibrary.IWshShortcut)wsh.CreateShortcut(f.FullName);
         image.Source = GetIcon(sc.TargetPath);
@@ -63,7 +63,7 @@ namespace fuzzy_kellotin
       }
       else
       {
-        test.Text = "";
+        appName.Text = "";
         found = null;
         image.Source = null;
       }
@@ -76,7 +76,7 @@ namespace fuzzy_kellotin
       {
         Process proc = new Process();
         proc.StartInfo.FileName = found.FullName;
-        test.Text = "";
+        appName.Text = "";
         searchBox.Text = String.Empty;
         found = null;
         image.Source = null;
@@ -85,7 +85,7 @@ namespace fuzzy_kellotin
       }
       if (Keyboard.IsKeyDown(Key.Escape))
       {
-        test.Text = "";
+        appName.Text = "";
         searchBox.Text = String.Empty;
         found = null;
         image.Source = null;
@@ -93,7 +93,7 @@ namespace fuzzy_kellotin
       }
     }
 
-    private void test_GotFocus(object sender, RoutedEventArgs e)
+    private void appName_GotFocus(object sender, RoutedEventArgs e)
     {
       searchBox.Focus();
     }
@@ -111,16 +111,16 @@ namespace fuzzy_kellotin
 
       if (MainWindow.black == true)
       {
-        test.Foreground = new SolidColorBrush(Colors.Black);
+        appName.Foreground = new SolidColorBrush(Colors.Black);
         dropShadow.Color = Colors.White;
       }
       else
       {
-        test.Foreground = new SolidColorBrush(Colors.White);
+        appName.Foreground = new SolidColorBrush(Colors.White);
       }
-      test.Effect = dropShadow;
-      searchBox.Effect = test.Effect;
-      searchBox.Foreground = test.Foreground;
+      appName.Effect = dropShadow;
+      searchBox.Effect = appName.Effect;
+      searchBox.Foreground = appName.Foreground;
       searchBox.BorderBrush = searchBox.CaretBrush = searchBox.Foreground;
     }
   }

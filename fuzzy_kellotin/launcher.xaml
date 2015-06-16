@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="launcher" Height="86" Width="252" AllowsTransparency="True" WindowStyle="None" Background="#00F1F1F1" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Topmost="True" ShowInTaskbar="False">
     <Grid Margin="0,0,0,-62" RenderTransformOrigin="0.504,0.75">
-        <TextBox x:Name="test" Text="" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Open Sans"  FontSize="20" Height="30" Width="auto" Margin="3,33,0,85" BorderThickness="0" Background="#00F1F1F1" IsReadOnly="True" GotFocus="test_GotFocus" Cursor="Arrow">
+        <TextBox x:Name="appName" Text="" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Open Sans"  FontSize="20" Height="30" Width="auto" Margin="3,33,0,85" BorderThickness="0" Background="#00F1F1F1" IsReadOnly="True" GotFocus="appName_GotFocus" Cursor="Arrow">
             <TextBox.Effect>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="3"/>
             </TextBox.Effect>
