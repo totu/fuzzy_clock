@@ -1,6 +1,8 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using Newtonsoft.Json;
 
 namespace fuzzy_kellotin
 {
@@ -21,6 +23,25 @@ namespace fuzzy_kellotin
       Weather weather = new Weather(lampotila, image, LOCALE, APIKEY);
       clock.start();
       weather.start();
+      checkSettings();
+    }
+
+    private void checkSettings()
+    {
+      string path = "fuzzy.json";
+      if (File.Exists(path))
+      {
+        string settings = File.ReadAllText(path);
+        dynamic obj = JsonConvert.DeserializeObject(settings);
+        if (obj.color == "white")
+        {
+          toggleColors();
+        }
+      } else
+      {
+        string defaults = "{'color':'black'}";
+        File.WriteAllText(path, defaults);
+      }
     }
 
     private void OnHotKeyHandler(HotKey hotKey)
@@ -32,17 +53,22 @@ namespace fuzzy_kellotin
 
     private void toggleColors()
     {
+      string path = "fuzzy.json";
+      string settings;
       if (black == true)
       {
         kello.Foreground = new SolidColorBrush(Colors.White);
         black = false;
+        settings = "{'color':'white'}";
       }
       else
       {
         kello.Foreground = new SolidColorBrush(Colors.Black);
         black = true;
+        settings = "{'color':'black'}";
       }
       lampotila.Foreground = kello.Foreground;
+      File.WriteAllText(path, settings);
     }
 
     private void kello_MouseDown(object sender, MouseButtonEventArgs e)
