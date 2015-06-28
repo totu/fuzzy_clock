@@ -14,12 +14,12 @@ namespace fuzzy_kellotin
 {
   public partial class launcher : Window
   {
+    private bool black = true;
     private List<FileInfo> executables = new List<FileInfo>();
     public FileInfo found = null;
     public launcher()
     {
       InitializeComponent();
-      checkColors();
       string path = Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu) + @"\Programs\";
       searchFolder(path);
       path = Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + @"\Programs\";
@@ -58,7 +58,13 @@ namespace fuzzy_kellotin
         appName.Text = f.Name.Replace(".lnk", "");
         IWshRuntimeLibrary.IWshShell wsh = new IWshRuntimeLibrary.WshShellClass();
         IWshRuntimeLibrary.IWshShortcut sc = (IWshRuntimeLibrary.IWshShortcut)wsh.CreateShortcut(f.FullName);
-        image.Source = GetIcon(sc.TargetPath);
+        if (sc.TargetPath != null && sc.TargetPath != "")
+        {
+          image.Source = GetIcon(sc.TargetPath);
+        } else
+        {
+          image.Source = null;
+        }
         found = f;
       }
       else
@@ -98,9 +104,9 @@ namespace fuzzy_kellotin
       searchBox.Focus();
     }
 
-    private void checkColors()
+    public void checkColors()
     {
-
+      black = MainWindow.black;
       DropShadowEffect dropShadow = new DropShadowEffect
       {
         Color = Colors.Black,
@@ -109,7 +115,7 @@ namespace fuzzy_kellotin
         Opacity = 1
       };
 
-      if (MainWindow.black == true)
+      if (black == true)
       {
         appName.Foreground = new SolidColorBrush(Colors.Black);
         dropShadow.Color = Colors.White;
