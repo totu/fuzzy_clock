@@ -46,7 +46,13 @@ namespace fuzzy_kellotin
 
     public static ImageSource GetIcon(string fileName)
     {
-      Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(fileName);
+      Icon icon;
+      try
+      {
+        icon = System.Drawing.Icon.ExtractAssociatedIcon(fileName);
+      } catch {
+        icon = null;
+      }
       return System.Windows.Interop.Imaging.CreateBitmapSourceFromHIcon(icon.Handle, new Int32Rect(0, 0, icon.Width, icon.Height), BitmapSizeOptions.FromEmptyOptions());
     }
 

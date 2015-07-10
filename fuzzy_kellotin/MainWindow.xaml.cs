@@ -16,7 +16,6 @@ namespace fuzzy_kellotin
     public MainWindow()
     {
       InitializeComponent();
-      checkSettings();
       launcher = new launcher();
       HotKey _hotKey = new HotKey(Key.Space, KeyModifier.Alt, OnHotKeyHandler);
       black = true;
@@ -24,6 +23,7 @@ namespace fuzzy_kellotin
       Weather weather = new Weather(lampotila, image, LOCALE, APIKEY);
       clock.start();
       weather.start();
+      checkSettings();
     }
 
     private void checkSettings()
