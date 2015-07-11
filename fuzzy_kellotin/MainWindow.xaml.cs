@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using Newtonsoft.Json;
+using System.Windows.Media.Effects;
 
 namespace fuzzy_kellotin
 {
@@ -56,6 +57,15 @@ namespace fuzzy_kellotin
     {
       string path = "fuzzy.json";
       string settings;
+
+      DropShadowEffect dropShadow = new DropShadowEffect
+      {
+        Color = Colors.Black,
+        Direction = 320,
+        ShadowDepth = 0,
+        Opacity = 1
+      };
+
       if (black == true)
       {
         kello.Foreground = new SolidColorBrush(Colors.White);
@@ -65,10 +75,13 @@ namespace fuzzy_kellotin
       else
       {
         kello.Foreground = new SolidColorBrush(Colors.Black);
+        dropShadow.Color = Colors.White;
         black = true;
         settings = "{'color':'black'}";
       }
       lampotila.Foreground = kello.Foreground;
+      kello.Effect = dropShadow;
+      lampotila.Effect = kello.Effect;
       File.WriteAllText(path, settings);
     }
 
